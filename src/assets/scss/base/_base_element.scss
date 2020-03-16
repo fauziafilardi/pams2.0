@@ -1,0 +1,27 @@
+/**
+* TYPOGRAPHY
+*/
+
+/**
+* ELEMENT HTML
+*/
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: auto;
+  background-color: #55b3ff!important;
+  font-family: 'Segoe UI'!important;
+  font-weight: normal;
+  font-style: normal;
+  // min-width: 1024px !important;
+}
+
+a {
+  text-decoration: none!important;
+}
+
+button {
+  margin-right: 5px!important;
+}

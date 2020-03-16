@@ -1,0 +1,39 @@
+@media screen and (max-width: 360px){
+    .absolute-connection-wrapper 
+    .content-app__body{
+        // padding: 15px;
+        padding-top: 85px;
+        font-size: 11px;
+    }
+
+    .content-app-form__body{
+        padding-top: 150px !important;
+    }
+
+    .lbl-col-align{
+        text-align: left !important;
+    }
+
+    // .ABSTabs{
+    //     // background: white !important;
+    //     // margin-top: 90px !important;
+    //     // margin-left: 12px !important;
+    //     // margin-right: 12px !important;
+    //     // box-shadow: 3px 3px #c1c1c1 !important;
+    //     &__active{
+    //         margin-top: 90px !important;
+    //     }
+
+    //   }
+
+      .bColMasterForm{
+          margin-left: 15px !important;
+          margin-right: 27px !important;
+      }
+
+      .search-toolbar{
+        max-width: 85% !important;
+        padding-bottom: 10px !important;
+      }
+
+}

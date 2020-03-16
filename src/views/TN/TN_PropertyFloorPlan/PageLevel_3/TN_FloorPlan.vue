@@ -1,0 +1,409 @@
+<template>
+    <div>        
+    <ABSListVuex
+      :prop = "propList"
+      :title = "data.QueryName"
+      @rowClicked = "$parent.rowClicked"
+      @rowDblClicked = "$parent.doDoubleClick"
+      @rowLinkClick = "$parent.rowLink"
+      @pageSize = "$parent.M_PageSize"
+      @pagination = "$parent.M_Pagination"
+      @filter = "$parent.M_Advance_Filter"
+      @headTable = "$parent.M_Head_Table"
+      @refreshColumn = "$parent.refreshColumn"
+    />
+
+
+        <div v-show="$parent.showForm"  :style="'margin-top:10px;'" class="el" mousetip mousetip-msg="I'm a tooltip">
+            <div class="div-collapse" v-b-toggle.collapse1>
+                <span class="master-span" v-show="IEBy.Input && IEBy.Edit">
+                    Input By : {{IEBy.Input}} | Edit By : {{IEBy.Edit}} <font-awesome-icon icon="sort-down" class="icon-style-1__master" /> 
+                </span>
+            </div>
+            <b-collapse id="collapse1" :visible="true">
+                <b-row  style="padding-left: 10px; padding-bottom: 10px; !important;">     
+					<b-col md="12" id="col-left" class="bColMasterForm">	
+						<b-form :data-vv-scope="'FormScope_' + PageLevel + '_' + TabIndex" :data-vv-value-path="'FormScope_' + PageLevel + '_' + TabIndex">
+                            <b-row style="padding-left:10px;">					
+                                <b-col md="12" id="col-left"> <!-- table open -->
+                                    <b-row>
+                                      <b-col  md="6">
+                                        <ABSinputTextVuex :prop="PI_floorplancd" v-model="M_TN_FloorPlan.floorplancd"  ref="ref_floorplancd"/>
+                                      </b-col>
+                                    </b-row>
+                                    <b-row>
+                                      <b-col  md="6">
+                                        <ABSinputTextVuex :prop="PI_descs" v-model="M_TN_FloorPlan.descs"  ref="ref_descs"/>
+                                      </b-col>
+                                    </b-row>
+                                    <!-- <b-row>
+                                      <b-col  md="6">
+                                        <ABSinputTextVuex :prop="PI_latitude" v-model="M_TN_FloorPlan.latitude"  ref="ref_latitude"/>
+                                      </b-col>
+                                    </b-row>
+                                    <b-row>
+                                      <b-col  md="6">
+                                        <ABSinputTextVuex :prop="PI_longitude" v-model="M_TN_FloorPlan.longitude"  ref="ref_longitude"/>
+                                      </b-col>
+                                    </b-row> -->
+                                    <b-row>
+                                      <b-col  md="6">
+                                        <ABSFileUpload :prop="PI_referencefilename" @fileName="getFileName" 
+                                                                        v-model="M_TN_FloorPlan.referencefilename" 
+                                                                        :file="M_TN_FloorPlan.picturefilename" 
+                                                                        :image="M_TN_FloorPlan.referencefilename"
+                                                                         ref="ref_referencefilename" />
+                                      </b-col>
+                                    </b-row>
+                                </b-col> <!-- table close -->
+                  
+							</b-row>
+							<ABSTAnalysis :prop="PTAnalysis" />
+						</b-form>
+					</b-col>
+                </b-row>
+            </b-collapse>
+        </div>
+    </div>
+</template>
+
+<script>
+
+export default {
+    props: {PageLevel: '', TabIndex: '', data: ''},
+    data() {
+        return {
+		cInsertKey:'',
+		FormType: "List",
+		Module:"TN",
+            propList: {
+                initialWhere: "SubPortFolioCd = '"+this.getDataUser().SubPortfolioCd+"'",
+                LineNo: this.$parent.data.PageOrder,
+                PageLevel: this.PageLevel,
+                TabIndex: this.TabIndex, 
+                OrderBy: '', 
+                SourceField: '', 
+                ParamView: '' 
+            },
+       
+            IEBy: {Input: '', Edit: ''},   			
+
+            M_TN_FloorPlan :{
+                subportfoliocd:'',
+                propertyid:0,
+                zoneid:0,
+                descs:'',
+                latitude:'',
+                longitude:'',
+                referencefilename:'',
+                picturefilename:'',
+                floorplanid:0,
+                floorplancd:''
+                    }
+            ,
+            PI_floorplancd: { 
+                cValidate :'required|max:10', 
+                cName: 'floorplancd', 
+                cLabel: 'FloorPlan Code', 
+                cLabelSize: 4, 
+                cOrder: 1, 
+                cKey: true, 
+                cType: 'text',
+                cVisible: true, 
+                cProtect: false, 
+                cPageLevel: this.PageLevel, 
+                cTabIndex: this.TabIndex, 
+                cParentForm: 'FormScope_' + this.PageLevel + '_' + this.TabIndex 
+            },
+            PI_descs: { 
+                cValidate :'required|max:60', 
+                cName: 'descs', 
+                cLabel: 'Description', 
+                cLabelSize: 4, 
+                cOrder: 2, 
+                cKey: false, 
+                cType: 'text',
+                cVisible: true, 
+                cProtect: false, 
+                cPageLevel: this.PageLevel, 
+                cTabIndex: this.TabIndex, 
+                cParentForm: 'FormScope_' + this.PageLevel + '_' + this.TabIndex 
+            },
+            // PI_latitude: { 
+            //     cValidate :'', 
+            //     cName: 'latitude', 
+            //     cLabel: 'Latitude', 
+            //     cLabelSize: 4, 
+            //     cOrder: 1, 
+            //     cKey: false, 
+            //     cType: 'text',
+            //     cVisible: true, 
+            //     cProtect: false, 
+            //     cPageLevel: this.PageLevel, 
+            //     cTabIndex: this.TabIndex, 
+            //     cParentForm: 'FormScope_' + this.PageLevel + '_' + this.TabIndex 
+            // }, 
+            // PI_longitude: { 
+            //     cValidate :'', 
+            //     cName: 'longitude', 
+            //     cLabel: 'Longitude', 
+            //     cLabelSize: 4, 
+            //     cOrder: 2, 
+            //     cKey: false, 
+            //     cType: 'text',
+            //     cVisible: true, 
+            //     cProtect: false, 
+            //     cPageLevel: this.PageLevel, 
+            //     cTabIndex: this.TabIndex, 
+            //     cParentForm: 'FormScope_' + this.PageLevel + '_' + this.TabIndex 
+            // }, 
+            PI_referencefilename: { 
+                cValidate :'', 
+                cName:'referencefilename', 
+                cLabel: 'Picture File Name', 
+                cSubPortfolio:this.getDataUser().SubPortfolioCd,
+                cPath:"SaveLocation/SubPortfolio/"+this.getDataUser().SubPortfolioCd+"/FloorPlan",
+                cLabelSize: 4, 
+                cOrder:3, 
+                cVisible: true, 
+                cModule: 'TN', 
+                cPlaceholder: 'Choose a file...', 
+                cPageLevel: this.PageLevel, 
+                cTabIndex: this.TabIndex, 
+                cVisible: true 
+            }, 
+
+			PTAnalysis: {
+                cPageLevel: this.PageLevel,
+                cTabIndex: this.TabIndex,
+                cPageMasterSeq: this.data.PageMasterSeq,
+                cFormPageNo: this.data.PageOrder
+            }
+        }
+    },
+	computed : {
+    inputStatus() {
+      if(this.$store.getters.getLevel == this.PageLevel && this.$store.getters.getTab == this.TabIndex){
+        return this.$store.getters.getStatus.toUpperCase()
+      }
+      else {
+        return 'VIEW'
+      }
+    },
+	DataRow(){
+		return this.$store.getters.GetPage2Data
+    },
+    DataRowPage1(){
+		return this.$store.getters.GetPage1Data
+    },
+    DataRowPage2(){
+		return this.$store.getters.GetPage2Data
+	}
+  },
+    methods: {		
+        getFileName(fileName) {
+            //   console.log('fileName',fileName)
+            this.M_TN_FloorPlan.picturefilename = fileName 
+        },    
+	
+		setToolbarButton () {
+           //this.getToolbar().statusFunction[4].disabled = false
+		},
+        M_Head_Table () {
+        },
+        M_PageSize(){
+        },
+        M_TabClick(){
+        },
+        M_Pagination(){
+        },
+        M_Advance_Filter(){
+        },
+        M_Search(data){
+        },
+        M_Refresh(){
+        },
+		M_Cancel() {			
+		},		
+		doDoubleClick(){
+        },
+        rowClicked (record, index) {
+        },
+        rowLink: function(url){
+            this.$refs.modalTest.show()
+        },		
+		paramFromParent(){
+            this.$parent.showForm = false
+			
+            let data = this.$store.getters.GetPage2Data
+            this.M_TN_FloorPlan.propertyid = data.PropertyId
+            this.M_TN_FloorPlan.zoneid = data.zoneid
+            this.propList.initialWhere =" SubPortfolioCd = '" + data.SubPortfolioCd + "' and PropertyId = " + data.PropertyId + " AND ZoneId = "+data.ZoneId+""
+
+            this.FormToABSList().doGetList('','eb_getList')
+        },		
+        M_Post(dt){
+        },
+        M_Insert() {
+            var param = {			
+                OptionSeq: this.getOptionSeq().OptionSeq,
+                LineNo: this.$parent.data.PageOrder,
+                SubPortFolioCd: this.DataRowPage1.SubPortfolioCd,
+                PropertyId: this.DataRowPage1.PropertyId,
+                FloorPlanCd: this.M_TN_FloorPlan.floorplancd, 
+                ZoneId: this.DataRowPage2.ZoneId,
+                // Latitude: this.M_TN_FloorPlan.latitude,
+                // Longitude: this.M_TN_FloorPlan.longitude,
+                Descs: this.M_TN_FloorPlan.descs,
+                ReferenceFileName: this.M_TN_FloorPlan.referencefilename,
+                PictureFileName: this.M_TN_FloorPlan.picturefilename,
+                PathFile: this.PI_referencefilename.cPath,
+                UserInput: this.getDataUser().UserId ,
+                UserEdit: this.getDataUser().UserId                 
+            }
+
+            this.postJSON(this.getUrlInsert(), param)
+            .then((response) => {
+                if(response == null) return
+
+				//kalo ada hit api lagi,tolong script dibawah ini dipindahkan di dalam then'a ,setelah itu hapus comment ini
+                this.$parent.resultInsert(response.Message)
+					
+				
+            })
+        },
+        M_Update() {
+            var param = {			
+               OptionSeq: this.getOptionSeq().OptionSeq,
+                LineNo: this.$parent.data.PageOrder,
+                SubPortFolioCd: this.DataRowPage1.SubPortfolioCd,
+                PropertyId: this.DataRowPage1.PropertyId,
+                ZoneId: this.DataRowPage2.ZoneId,
+                FloorPlanId: this.M_TN_FloorPlan.floorplanid, 
+                FloorPlanCd: this.M_TN_FloorPlan.floorplancd, 
+                // Latitude: this.M_TN_FloorPlan.latitude,
+                // Longitude: this.M_TN_FloorPlan.longitude,
+                Descs: this.M_TN_FloorPlan.descs,
+                ReferenceFileName: this.M_TN_FloorPlan.referencefilename,
+                PictureFileName: this.M_TN_FloorPlan.picturefilename,
+                PathFile: this.PI_referencefilename.cPath,
+                UserEdit: this.getDataUser().UserId                  
+            }
+
+            this.postJSON(this.getUrlUpdate(), param)
+            .then((response) => {
+                if(response == null) return
+
+                //kalo ada hit api lagi,tolong script dibawah ini dipindahkan di dalam then'a ,setelah itu hapus comment ini
+                this.$parent.resultUpdate(response.Message)
+				
+            })
+        },
+		M_ClearForm(){
+            this.M_TN_FloorPlan = {
+                  subportfoliocd:'',
+                propertyid:0,
+                descs:'',
+                latitude:'',
+                longitude:'',
+                referencefilename:'',
+                picturefilename:'',
+                floorplanid:0,
+                floorplanid:''
+                    }
+            		
+		},
+        M_New(){
+			
+        },
+        M_Edit(){
+        },
+        M_Delete(dt){       
+
+            var data = this.FormToABSList().getRowSelected()  
+			var dataDelete = []
+			
+			data.forEach((value) => {				
+				dataDelete.push({
+                    SubPortfolioCd: value.SubPortfolioCd,
+                    FloorPlanId : value.FloorPlanId
+                })
+			})
+			
+			var param = {
+                OptionSeq: this.getOptionSeq().OptionSeq,
+                LineNo: this.$parent.data.PageOrder,
+                Data: dataDelete
+            }
+            
+            this.postJSONMulti( this.getUrlNewDeleteMulti(), param )
+            .then(response => {
+                if (response == null) return
+
+                this.$parent.resultDelete()
+            })   
+        },        
+        getDataBy (record) {
+            var param = {
+                OptionSeq: this.getOptionSeq().OptionSeq,
+                LineNo: this.$parent.data.PageOrder,
+                SubPortfolioCd : this.DataRowPage1.SubPortfolioCd,
+                PropertyId: this.DataRowPage1.PropertyId,
+                ZoneId: this.DataRowPage2.ZoneId,
+                FloorPlanId: record.FloorPlanId
+            }
+
+            this.postEncode( this.getUrlById(), param )
+            .then(response => {
+                // response from API
+                if(response == null) return
+                
+                var data = response.Data[0]
+this.M_TN_FloorPlan = {
+                        subportfoliocd: data.subportfoliocd,
+                        propertyid: data.propertyid,
+                        zoneid: data.zoneid,
+                        descs: data.descs,
+                        // latitude: data.latitude,
+                        // longitude: data.longitude,
+                        referencefilename: data.referencefilename,
+                        picturefilename: data.picturefilename,
+                        floorplanid: data.floorplanid,
+                        floorplancd: data.floorplancd
+                    }
+                 
+
+                
+         
+
+                this.IEBy.Input = data.userinput
+                this.IEBy.Edit = data.useredit
+
+            })
+        }
+
+    },
+    beforeCreate: function () {
+    },
+    created: function() {
+	this.$store.commit('setFormType','List')
+    this.getToolbar().ProcessPS()
+    },
+    beforeMount: function() {
+    },
+    mounted: function() {
+        this.hideSideBarMenu()
+        this.FormToABSList().doGetList('','eb_getList')
+
+    },
+    beforeUpdate: function() {  
+    },
+    updated: function() {
+    },
+    beforeDestroy: function() {
+    },
+    destroyed: function() {
+    }
+}
+</script>
+

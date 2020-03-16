@@ -1,0 +1,30 @@
+@media screen and (max-width: 570px){
+    .content-app-form__body{
+        // padding: 15px;
+        padding-top: 125px !important;
+        font-size: 11px;
+    }
+
+    .lbl-col-align{
+        text-align: left !important;
+    }
+
+    .col-padding{
+        padding-left:10px !important;
+      }
+
+      .row-padding{
+        padding-left:10px;        
+      }
+
+      .col.tab-padding{
+        padding-left:10px !important; 
+        padding-right:10px !important;
+      }
+
+      .search-toolbar{
+        max-width: 90% !important;
+        padding-bottom: 10px !important;
+      }
+
+}

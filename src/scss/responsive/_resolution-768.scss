@@ -1,0 +1,36 @@
+@media screen and (max-width: 768px){
+    // .content-app {
+    //     float: left;
+    //     background-color: #FFFFFF;
+    //     height: 95%;
+    //     margin-top: 3.1em;
+    //     padding-left: 230px;
+    //     overflow-y: auto;
+    //     max-width: 100%;
+    //     overflow-x: hidden;
+    //     width: 100%;
+    //     position: relative;
+      
+    //     &__body {
+    //       padding: 15px;
+    //       // padding-top: 5.3em;
+    //       padding-top: 60px;
+    //       // padding-top: 30px;
+    //       font-size: 12px;
+    //     }
+    //   }
+
+    .content-app-form__body{
+        padding-top: 90px !important;
+    }
+
+    .lbl-col-align{
+        text-align: left !important;
+    }
+    
+    .bColMasterForm{
+        margin-left: 15px !important;
+        margin-right: 27px !important;
+    }
+
+}

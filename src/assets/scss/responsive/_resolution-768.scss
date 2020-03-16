@@ -1,0 +1,53 @@
+@media screen and (max-width: 768px){
+    .lbl-col-align{
+        text-align: left !important;
+    }
+    
+    .bColMasterForm{
+        margin-left: 15px !important;
+        margin-right: 27px !important;
+    }
+
+    .absolute-connection-wrapper .header--top__profile-menu {
+        width: 60px;
+    }
+
+    .absolute-connection-wrapper .header--top__profile-menu .information {
+        display: none;
+    }
+
+    .abs-login__box-position-left .bullet {
+        width: 30px;
+        height: 30px;
+        background-color: #2C3136;
+        border-radius: 50px;
+        text-align: right;
+        position: absolute;
+        right: 0;
+        margin-right: -13px;
+    }
+
+    .abs-login__box-position-left .box-information__title {
+        font-size: 20px;
+    }
+
+    .abs-login__box-position-left .box-information__subtitle {
+        font-size: 14px;
+    }
+
+    #AbsInputTest .v-select .selected-tag{
+        margin: 9px 2px 0 !important;
+      }
+    
+      .abs-login__box-position-right .box-layer-form .box-login-form{
+        width: 350px;
+        padding: 15px;
+        margin-left: 28%;
+        margin-top: 38%;
+      }
+
+      ul.pagination{
+          margin-top:45px;
+      }
+
+}

@@ -1,0 +1,25 @@
+/**
+* TYPOGRAPHY
+*/
+
+/**
+* ELEMENT HTML
+*/
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  background-color: #f1f4f5!important;
+  font-family: 'arial';
+  // font-family: 'Arial' , 'Helvetica Neue', 'Segoe UI';
+}
+
+a {
+  text-decoration: none!important;
+}
+
+button {
+  margin-right: 5px!important;
+}
