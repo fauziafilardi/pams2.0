@@ -189,6 +189,7 @@ export default {
     },
 
     valueLabel() {
+      console.log('1',this.value)
       // return this.value?moment(new Date(this.value)).format('DD MMM YYYY') : ''
       return this.value?moment(new Date(this.value)).format('DD/MM/YYYY') : ''
     },
@@ -205,6 +206,7 @@ export default {
       })
     },
     handleInput() {
+      console.log('2',this.value)
       this.value = this.momentDate(new Date(this.value))
     },
     eventBusListener (action, data) {
