@@ -89,7 +89,7 @@
 
                                     <b-row>
                                         <b-col md="5">
-                                            <ABSinputDate :prop="PI.DepositRefundDate" v-model="M_AR_DebitH.DepositRefundDate"/>
+                                            <ABSinputDateVuex :prop="PI.DepositRefundDate" v-model="M_AR_DebitH.DepositRefundDate"/>
                                         </b-col>
                                     </b-row>
                                 </b-col>

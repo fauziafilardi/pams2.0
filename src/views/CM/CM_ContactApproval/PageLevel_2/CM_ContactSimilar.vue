@@ -253,54 +253,54 @@ export default {
                 }) 
         },        
         getDataBy (record) {
-            var param = {
-                OptionSeq: this.getOptionSeq().OptionSeq,
-                LineNo: this.$parent.data.PageOrder
+//             var param = {
+//                 OptionSeq: this.getOptionSeq().OptionSeq,
+//                 LineNo: this.$parent.data.PageOrder
 				
-            }
+//             }
 
-            this.postEncode( this.getUrlById(), param )
-            .then(response => {
-                if(response == null) return
+//             this.postEncode( this.getUrlById(), param )
+//             .then(response => {
+//                 if(response == null) return
 
-                var data = response.Data[0]
-this.M_CM_ContactSimilar = {
-                contactid: data.contactid,
-                contactclasscd: data.contactclasscd,
-                parentid: data.parentid,
-                category: data.category,
-                government: data.government,
-                reasoncd: data.reasoncd,
-                reasondescs: data.reasondescs,
-                name: data.name,
-                website: data.website,
-                taxno: data.taxno,
-                taxreferenceno: data.taxreferenceno,
-                taxregistrationdate: data.taxregistrationdate,
-                taxcollectable: data.taxcollectable,
-                remarks: data.remarks,
-                userinput: data.userinput,
-                useredit: data.useredit,
-                classdescs: data.classdescs,
-                parentname: data.parentname,
-                classificationlocalid: data.classificationlocalid,
-                classificationcentralid: data.classificationcentralid,
-                classificationgroupid: data.classificationgroupid,
-                sequenceregistrationno: data.sequenceregistrationno,
-                lastupdatestamp: record.LastUpdateStamp,
-                rowid: data.rowid,
-                insurancestatus: data.insurancestatus,
-                financierstatus: data.financierstatus,
-                status: data.status
-                    }
+//                 var data = response.Data[0]
+// this.M_CM_ContactSimilar = {
+//                 contactid: data.contactid,
+//                 contactclasscd: data.contactclasscd,
+//                 parentid: data.parentid,
+//                 category: data.category,
+//                 government: data.government,
+//                 reasoncd: data.reasoncd,
+//                 reasondescs: data.reasondescs,
+//                 name: data.name,
+//                 website: data.website,
+//                 taxno: data.taxno,
+//                 taxreferenceno: data.taxreferenceno,
+//                 taxregistrationdate: data.taxregistrationdate,
+//                 taxcollectable: data.taxcollectable,
+//                 remarks: data.remarks,
+//                 userinput: data.userinput,
+//                 useredit: data.useredit,
+//                 classdescs: data.classdescs,
+//                 parentname: data.parentname,
+//                 classificationlocalid: data.classificationlocalid,
+//                 classificationcentralid: data.classificationcentralid,
+//                 classificationgroupid: data.classificationgroupid,
+//                 sequenceregistrationno: data.sequenceregistrationno,
+//                 lastupdatestamp: record.LastUpdateStamp,
+//                 rowid: data.rowid,
+//                 insurancestatus: data.insurancestatus,
+//                 financierstatus: data.financierstatus,
+//                 status: data.status
+//                     }
                  
 
   
 
-                this.IEBy.Input = data.userinput
-                this.IEBy.Edit = data.useredit
+//                 this.IEBy.Input = data.userinput
+//                 this.IEBy.Edit = data.useredit
 
-            })
+//             })
         }
 		
     },
