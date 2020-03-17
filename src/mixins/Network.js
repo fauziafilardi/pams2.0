@@ -25,7 +25,8 @@ export default {
       // urlReportTemplate: 'http://192.168.6.98/ReportPams/',
 
       // // dev PMO
-      url: 'http://192.168.6.9/PAMSAPI/PAMS.API/',
+      // url: 'http://192.168.6.9/PAMSAPI/PAMS.API/',
+      url: 'http://36.91.141.98:8999/PAMS.API/',
 
       // //url Report
       urlReportTemplate: 'http://192.168.6.9/ReportPams/',
@@ -592,8 +593,7 @@ export default {
         this.alertError(message)
       }
 
-      if (String(message) === 'Error: Request failed with status code 404') {
-      }
+      if (String(message) === 'Error: Request failed with status code 404') {}
     },
 
     postEncode(fullUrl, param) {
@@ -608,15 +608,13 @@ export default {
       }
 
       // loader off when lookup and click add button toolbar
-      if (fullUrl === this.getUrlLookup() || fullUrl === this.getUrlTanalysisAdd() || fullUrl === this.getUrlSaveParamTemp()) {
-      } else {
+      if (fullUrl === this.getUrlLookup() || fullUrl === this.getUrlTanalysisAdd() || fullUrl === this.getUrlSaveParamTemp()) {} else {
         this.$store.commit('setStatusLoader', true)
       }
       return axios
         .post(
           fullUrl,
-          this.queryString.stringify(param),
-          {
+          this.queryString.stringify(param), {
             headers: {
               'Content-Type': this.urlEncoded,
               // 'Content-Type': this.json,
@@ -635,8 +633,7 @@ export default {
           // this.error = true
 
           // this.$store.commit('setStatusLoader', false)
-          if (fullUrl === this.getUrlLookup() || fullUrl === this.getUrlTanalysisAdd() || fullUrl === this.getUrlSaveParamTemp()) {
-          } else {
+          if (fullUrl === this.getUrlLookup() || fullUrl === this.getUrlTanalysisAdd() || fullUrl === this.getUrlSaveParamTemp()) {} else {
             // setTimeout(() => {
             // this.$store.commit('setStatusLoader', false)
             // }, 1000);
@@ -644,8 +641,7 @@ export default {
               setTimeout(() => {
                 this.$store.commit('setStatusLoader', false)
               }, 1000);
-            }
-            else {
+            } else {
               this.$store.commit('setStatusLoader', false)
             }
           }
@@ -662,8 +658,7 @@ export default {
           this.$store.commit('setStatusError', true)
           this.checkResponseCode(err)
           // this.$store.commit('setStatusLoader', false)
-          if (fullUrl === this.getUrlLookup() || fullUrl === this.getUrlTanalysisAdd() || fullUrl === this.getUrlSaveParamTemp()) {
-          } else {
+          if (fullUrl === this.getUrlLookup() || fullUrl === this.getUrlTanalysisAdd() || fullUrl === this.getUrlSaveParamTemp()) {} else {
             this.$store.commit('setStatusLoader', false)
           }
           return null
@@ -684,8 +679,7 @@ export default {
       return axios
         .post(
           fullUrl,
-          param,
-          {
+          param, {
             headers: {
               'Content-Type': this.json,
               Accept: this.json,
@@ -743,8 +737,7 @@ export default {
       return axios
         .post(
           fullUrl,
-          param,
-          {
+          param, {
             headers: {
               'Content-Type': this.json,
               Accept: this.json,
@@ -945,8 +938,7 @@ export default {
       return axios
         .post(
           fullUrl,
-          param,
-          {
+          param, {
             headers: {
               'Content-Type': this.urlEncoded,
               Accept: this.json,
