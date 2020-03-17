@@ -1,6 +1,12 @@
 .DS_Store
 node_modules
+<<<<<<< HEAD
 dist
+=======
+
+# /dist
+/dist
+>>>>>>> 1f2cf73abeea4b75933e252b0485d4573633220b
 
 /tests/e2e/reports/
 selenium-debug.log

@@ -300,7 +300,7 @@ export default {
                 cName: 'trxtype', 
                 cLabel: 'Trans. Type ', 
                 cKey: true, 
-                cLabelSize: 4, 
+                cLabelSize: 4,  
                 cOrder: 0, 
                 cTriggered: false, 
                 cDefault: '', 
