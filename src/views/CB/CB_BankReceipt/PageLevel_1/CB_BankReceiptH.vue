@@ -290,7 +290,7 @@ export default {
                 cVisible: false 
             }, 
             PI_trxtype: { 
-                dataLookUp: { 
+                dataLookUp: {
                     LookUpCd: 'GetLookupTrxType'    , 
                     ColumnDB: 'TrxType'   , 
                     InitialWhere: "SubPortfolioCd  =  '" + this.getDataUser().SubPortfolioCd + "' AND  ModuleCd = 'CB' AND TrxClass = 'T' AND Status = 'A'"   , 
