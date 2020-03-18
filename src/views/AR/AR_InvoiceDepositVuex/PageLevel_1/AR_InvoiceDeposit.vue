@@ -10,6 +10,8 @@
       @pagination="$parent.M_Pagination"
       @filter="$parent.M_Advance_Filter"
       @headTable="$parent.M_Head_Table"
+      @refreshColumn="$parent.refreshColumn"
+      @checkboxChecked="$parent.checkboxChecked"
     />
 
     <div
@@ -160,10 +162,14 @@ export default {
       FormType: "ListProcess",
       Module: "AR",
       propList: {
-        initialWhere: "",
+        initialWhere:
+          "SubPortfolioCd = '" + this.getDataUser().SubPortfolioCd + "' ",
         LineNo: this.$parent.data.PageOrder,
         PageLevel: this.PageLevel,
-        TabIndex: this.TabIndex
+        TabIndex: this.TabIndex,
+        OrderBy: "",
+        SourceField: "",
+        ParamView: ""
       },
       M_AR_DebitH: {
         subportfoliocd: this.getDataUser().SubPortfolioCd,
@@ -448,6 +454,11 @@ export default {
     }
   },
   methods: {
+    M_CheckboxChecked(data, status, index) {
+      console.log(data);
+      console.log(status);
+      console.log(index);
+    },
     M_Head_Table() {},
     M_PageSize() {},
     M_TabClick() {},
@@ -685,7 +696,15 @@ export default {
       });
     },
     M_Cancel() {},
-    rowClicked(record, index) {},
+    rowClicked(record, index) {
+      console.log(index, JSON.stringify(record, null, 2));
+
+      if (record.IsContract == 1) {
+        this.$store.commit("setEditStatus", false);
+      } else {
+        this.$store.commit("setEditStatus", true);
+      }
+    },
     rowLink: function(url) {},
     getDataBy(record) {
       // console.log(record)
