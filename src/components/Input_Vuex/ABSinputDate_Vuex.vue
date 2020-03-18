@@ -231,7 +231,7 @@ export default {
     },
     hideDatepicker(calendar) {
       // if contain _ on blur, return value before editing
-      if (this.valueMasking == '__/__/____') {
+      if (this.valueMasking == '' || this.valueMasking == '__/__/____') {
         this.value = ''
       }
       else if (this.valueMasking.includes("_")) {
