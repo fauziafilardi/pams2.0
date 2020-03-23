@@ -53,17 +53,17 @@
                                     </b-row>
                                     <b-row>
                                       <b-col  md="6">
-                                        <ABSinputTextVuex @change="OngrossareaChange" :prop="PI_grossarea" v-model="M_TN_Zone.grossarea"  ref="ref_grossarea"/>
+                                        <ABSinputTextVuex @onBlur="OngrossareaChange" :prop="PI_grossarea" v-model="M_TN_Zone.grossarea"  ref="ref_grossarea"/>
                                       </b-col>
                                     </b-row>
                                     <b-row>
                                       <b-col  md="6">
-                                        <ABSinputTextVuex  :prop="PI_semigrossarea" v-model="M_TN_Zone.semigrossarea"  ref="ref_semigrossarea"/>
+                                        <ABSinputTextVuex @input="OnsemigrossareaChange" :prop="PI_semigrossarea" v-model="M_TN_Zone.semigrossarea"  ref="ref_semigrossarea"/>
                                       </b-col>
                                     </b-row>
                                     <b-row>
                                       <b-col  md="6">
-                                        <ABSinputTextVuex :prop="PI_netarea" v-model="M_TN_Zone.netarea"  ref="ref_netarea"/>
+                                        <ABSinputTextVuex @input="OnnetareaChange" :prop="PI_netarea" v-model="M_TN_Zone.netarea"  ref="ref_netarea"/>
                                       </b-col>
                                     </b-row>
                                     <b-row>
@@ -323,6 +323,27 @@ export default {
         this.$forceUpdate()
         },
         OngrossareaChange (data) {
+        this.$nextTick(() => {
+            if (this.inputStatus != "VIEW") {
+                var x = this.isCurrency(data, this.decimal)
+                this.M_TN_Zone.semigrossarea = x
+                this.M_TN_Zone.netarea = x
+                this.PI_semigrossarea.cValidate = 'required|min_value:' + x
+                this.PI_netarea.cValidate = 'required|min_value:' + x
+            }
+        })
+        this.$forceUpdate()
+        },
+        OnsemigrossareaChange (data) {
+        this.$nextTick(() => {
+            if (this.inputStatus != "VIEW") {
+                var x = this.isCurrency(data, this.decimal)
+                this.PI_netarea.cValidate = 'required|min_value:' + x
+            }
+        })
+        this.$forceUpdate()
+        },
+        OnnetareaChange (data) {
         this.$nextTick(() => {
             if (this.inputStatus != "VIEW") {
 //{chargearea}

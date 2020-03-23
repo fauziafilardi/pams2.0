@@ -836,7 +836,7 @@ export default {
                     if (fullUrl === this.getUrlNewDeleteMulti()) {
                       html += '<td style="padding-left: 5px;padding-right: 5px;">' + message + msg + ' Deleted Successfully' + '</td>'
                     } else if (fullUrl === this.getUrlPostMulti()) {
-                      html += '<td style="padding-left: 5px;padding-right: 5px;">' + msg + ' Posting Successfully' + '</td>'
+                      html += '<td style="padding-left: 5px;padding-right: 5px;">' + message + msg + ' Posting Successfully' + '</td>'
                       // html += '<td style="padding-left: 5px;padding-right: 5px;">' + msg + ' Posting Successfully' + '</td>'
                     } else if (fullUrl === this.getUrlUpdateMulti()) {
                       html += '<td style="padding-left: 5px;padding-right: 5px;">' + message + msg + ' Update Successfully' + '</td>'

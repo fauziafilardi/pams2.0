@@ -95,10 +95,10 @@ export default {
 
             data.forEach((value) => {
                 dataPost.push({
+                    _Message_:'Lot No ' + value.LotNo,
                     SequenceNo : value.SequenceNo,
                     SubPortfolioCd : this.getDataUser().SubPortfolioCd,
-                    UserID:this.getDataUser().UserId,
-                    _Message_:'Lot No ' + value.LotNo
+                    UserID:this.getDataUser().UserId
                 })
             })
             
@@ -111,7 +111,7 @@ export default {
             this.postJSONMulti(this.getUrlPostMulti(), param).then(response => {
                 if (response == null) return
                 this.$store.commit('setEventStatus', 'POST')
-                this.toList().doGetList("", "eb_getList")
+                this.toList().doGetList("", "post")
             })
         },
         setToolbarButton() {},

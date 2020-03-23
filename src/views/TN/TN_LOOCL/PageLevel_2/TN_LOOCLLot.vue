@@ -223,7 +223,7 @@ export default {
           InitialWhere: "",
           ParamWhere: "",
           SourceField:
-            "LotNo,Descs,FixCharges,ChargeArea,GrossArea,SemiGrossArea,NetArea",
+            "LotNo,Descs,FixCharges,ChargeArea_,GrossArea,SemiGrossArea,NetArea",
           DisplayLookUp: "LotNo,Descs"
         },
         cValidate: "required",
