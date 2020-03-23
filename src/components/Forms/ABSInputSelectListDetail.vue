@@ -442,6 +442,7 @@ export default {
       DisplayLookUp: String
     },
     title: String,
+    cShowNumber: Boolean,
 
     // T Analysis
     TrxAnalysisCategory: {type: String, default: ''},
@@ -830,6 +831,10 @@ export default {
           value: 0,
           key: "chkBoxAction"
         });
+        this.fieldHeader.push({
+          value: 1,
+          key: "No"
+        });
         this.selectedColumn.forEach(ar => {
           var thClass = "ABSthClassList"
           console.log(ar)
@@ -1132,6 +1137,15 @@ export default {
         this.fieldHeader = [];
         this.fieldFilter = [];
         this.items = this.responses.Data;
+
+        if (this.cShowNumber === true) {
+          this.fieldHeader.push({
+            value: 0,
+            key: 'No',
+            thClass: 'ABSthClassList',
+            tdClass: 'ABStdClassList'
+          })
+        }
 
         var keys = this.responses.AllColumn.split(",");
         // if (this.isTAnalysis) {
