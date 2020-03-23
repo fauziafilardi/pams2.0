@@ -42,6 +42,7 @@
                     :urlApi="urlApi"
                     @rowDblClicked="doDoubleClick"
                     :cName="prop.cName"
+                    :cShowNumber="prop.cShowNumber"
                 />
               </div>
             <!-- </div> -->
@@ -190,7 +191,8 @@ export default {
         cParamMasterUrl:String,
         cParamUrl: String,
         cDisplayColumn: String,
-        cIsAlwaysShow: Boolean
+        cIsAlwaysShow: Boolean,
+        cShowNumber: Boolean
     },
     label: {type: String, default: ''},
     // value: {type: String, default: ''},
@@ -516,6 +518,7 @@ console.log('parameter loop',this.prop.cParamUrl)
     this.prop.cTriggered = this.prop.cTriggered ? this.prop.cTriggered : false
     this.prop.cProtect = this.prop.cProtect ? this.prop.cProtect : false
     this.prop.cAsync = this.prop.cAsync ? this.prop.cAsync : true
+    this.prop.cShowNumber = this.prop.cShowNumber ? this.prop.cShowNumber : false;
     // this.prop.cVisible = this.prop.cVisible == undefined || this.prop.cVisible == null ? true : this.prop.cVisible
     // this.prop.cIsAlwaysShow = this.prop.cIsAlwaysShow ? this.prop.cIsAlwaysShow : false
 
