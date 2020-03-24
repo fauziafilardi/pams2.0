@@ -460,19 +460,19 @@ export default {
     this.prop.cMasterUrl = this.prop.cMasterUrl == '' ? undefined : this.prop.cMasterUrl
 
     // untuk ambil oid
-    // var event = this.getMenu().EventWithChild
-    // var url = this.prop.cMasterUrl + '?oid='
-    // var oi = ''
-    // var arrFilter = event.filter(function(menu) {
+    var event = this.getMenu().EventWithChild
+    var url = this.prop.cMasterUrl + '?oid='
+    var oi = ''
+    var arrFilter = event.filter(function(menu) {
 
-    //   var x = menu.Child.filter(function(child) {
-    //     var menu = child.menu_url
-    //     if (menu.includes(url)) {
-    //       oi = menu
-    //     }
-    //   })
-    // })
-    // this.oid = oi
+      var x = menu.Child.filter(function(child) {
+        var menu = child.menu_url
+        if (menu.includes(url)) {
+          oi = menu
+        }
+      })
+    })
+    this.oid = oi
 
   },
   mounted() {
