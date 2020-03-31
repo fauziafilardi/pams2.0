@@ -2838,6 +2838,8 @@ export default {
           this.GetLeasePeriode();
         }
       }
+
+      //AKMAL
       // this.$nextTick(() => {
         
       // });
