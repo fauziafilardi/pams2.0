@@ -1592,6 +1592,7 @@ export default {
 
       this.FnDynamicFunction(param).then(ress => {
         if (ress == null) return;
+        if (ress.length < 1) return;
         var data = ress[0];
         // this.isCurrency(data.servicecharge, this.decimal)
         this.M_TN_LOOAddendum.servicecharge = this.isCurrency(
@@ -1896,6 +1897,9 @@ export default {
             ? data.MediaCd + this.separator
             : "";
 
+          this.isOnAppNo = false;
+          this.SetLookUpBrand()
+
         setTimeout(() => {
           this.M_TN_LOOAddendum.red = data.RED;
           this.M_TN_LOOAddendum.perioddays = data.PeriodDays;
@@ -1984,11 +1988,11 @@ export default {
         this.isOnAppNo = true;
         if (this.inputStatus != "VIEW") {
           this.GetContract(data.id);
-          this.SetLookUpBrand();
-          setTimeout(() => {
-            this.isOnAppNo = false;
-            console.log("OnapplicationnoChange", this.isOnAppNo);
-          }, 2000);
+          // this.SetLookUpBrand();
+          // setTimeout(() => {
+          //   this.isOnAppNo = false;
+          //   console.log("OnapplicationnoChange", this.isOnAppNo);
+          // }, 2000);
         }
       });
       this.$forceUpdate();
@@ -2812,31 +2816,32 @@ export default {
       // this.M_TN_LOO.enddate = data
     },
     MdtRange_rcd(data) {
-      this.$nextTick(() => {
-        if (this.inputStatus != "VIEW") {
-          this.M_TN_LOOAddendum.rcd = data;
-          console.log("MdtRange_rcd", this.M_TN_LOOAddendum.rcd);
-          if (this.isOnAppNo == false) {
-            if (
-              this.M_TN_LOOAddendum.leaseperiod &&
-              this.M_TN_LOOAddendum.leaseperiod != "" &&
-              data &&
-              data != ""
-            ) {
-              this.M_TN_LOOAddendum.red = this.dateAdd2(
-                "d",
-                this.dateAdd2("m", data, this.M_TN_LOOAddendum.leaseperiod),
-                -1
-              );
-            }
-            console.log("MdtRange_rcd", this.M_TN_LOOAddendum.red);
-            this.SetLookUpBrand();
-            this.GetLeasingPolicyDefault();
-            this.GetLeasePeriode();
+      if (this.inputStatus != "VIEW") {
+        this.M_TN_LOOAddendum.rcd = data;
+        console.log("MdtRange_rcd", this.M_TN_LOOAddendum.rcd);
+        if (this.isOnAppNo == false) {
+          if (
+            this.M_TN_LOOAddendum.leaseperiod &&
+            this.M_TN_LOOAddendum.leaseperiod != "" &&
+            data &&
+            data != ""
+          ) {
+            this.M_TN_LOOAddendum.red = this.dateAdd2(
+              "d",
+              this.dateAdd2("m", data, this.M_TN_LOOAddendum.leaseperiod),
+              -1
+            );
           }
+          console.log("MdtRange_red", this.M_TN_LOOAddendum.red);
+          this.SetLookUpBrand();
+          this.GetLeasingPolicyDefault();
+          this.GetLeasePeriode();
         }
-      });
-      this.$forceUpdate();
+      }
+      // this.$nextTick(() => {
+        
+      // });
+      // this.$forceUpdate();
     },
     BlurRange_rcd(data) {
       // kena onchange
@@ -2846,15 +2851,15 @@ export default {
       // this.M_TN_LOO.red = data
     },
     MdtRange_red(data) {
-      this.$nextTick(() => {
+      // this.$nextTick(() => {
         if (this.inputStatus != "VIEW") {
           this.M_TN_LOOAddendum.red = data;
           console.log("MdtRange_red", this.M_TN_LOOAddendum.red);
 
           this.GetLeasePeriode();
         }
-      });
-      this.$forceUpdate();
+      // });
+      // this.$forceUpdate();
     },
     MdtRange_utilitiesstartdate(data) {
       this.M_TN_LOOAddendum.utilitiesstartdate = data;
@@ -2874,6 +2879,7 @@ export default {
 
       this.FnDynamicFunction(param).then(ress => {
         if (ress == null) return;
+        if (ress.length < 1) return;
         var data = ress[0];
         // console.log(data)
 
