@@ -58,6 +58,8 @@
         classIcon="icon-style-1"
         @click="doNew"
         :disabled="statusFunction[0].disabled||isNew||!newStatus"
+        :shortKey="['alt','a']"
+        @shortKey="doNew"
       />
       <ABSButton
         :text="statusFunction[1].text"
@@ -66,6 +68,8 @@
         classIcon="icon-style-1"
         @click="doEdit"
         :disabled="statusFunction[1].disabled||isNew||isCannotEdit||!editStatus"
+        :shortKey="['alt','e']"
+        @shortKey="doEdit"
       />
       <!-- {{ statusFunction[1].disabled+ "||" + isNew+ "||" + isCannotEdit+ "||" + !editStatus }} -->
       <ABSButton
@@ -85,6 +89,8 @@
         classIcon="icon-style-1"
         @click="doSave"
         :disabled="statusFunction[5].disabled||!isNew"
+        :shortKey="['alt','s']"
+        @shortKey="doSave"
       />
       <ABSButton
         text="Cancel"
@@ -93,6 +99,8 @@
         classIcon="icon-style-2"
         @click="doCancel"
         :disabled="statusFunction[6].disabled||!isNew"
+        :shortKey="['alt','c']"
+        @shortKey="doCancel"
       />
       <ABSButton
         text="Refresh"
@@ -101,6 +109,8 @@
         classIcon="icon-style-1"
         @click="doRefresh"
         :disabled="statusFunction[7].disabled&&isNew"
+        :shortKey="['alt','r']"
+        @shortKey="doRefresh"
       />
       <ABSButton
         :text="statusFunction[4].text"
