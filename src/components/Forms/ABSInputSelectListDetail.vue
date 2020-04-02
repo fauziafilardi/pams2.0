@@ -831,10 +831,10 @@ export default {
           value: 0,
           key: "chkBoxAction"
         });
-        this.fieldHeader.push({
-          value: 1,
-          key: "No"
-        });
+        // this.fieldHeader.push({
+        //   value: 1,
+        //   key: "No"
+        // });
         this.selectedColumn.forEach(ar => {
           var thClass = "ABSthClassList"
           console.log(ar)

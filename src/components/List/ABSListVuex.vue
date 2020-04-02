@@ -342,7 +342,7 @@ export default {
       TabIndex: String,
       OrderBy: String,
       SourceField: String,
-      ParamView: String
+      ParamView: String,
     },
     title: String,
     isProcess: Boolean,
@@ -350,7 +350,8 @@ export default {
     isCheckAsStatus: String,
     statusFalse: String,
     hideCheckboxAndGear: Boolean,
-    hideCheckbox: Boolean
+    hideCheckbox: Boolean,
+    cShowNumber: Boolean,
   },
   watch: {
     // rowSelected: function (newData, oldData) {
@@ -1113,6 +1114,15 @@ export default {
           key: "chkBoxAction"
         });
 
+        if (this.cShowNumber === true) {
+          this.fieldHeader.push({
+            value: 0,
+            key: 'No',
+            thClass: 'ABSthClassList',
+            tdClass: 'ABStdClassList'
+          })
+        }
+
         this.allColumn_bf.forEach((val, idx) => {
           var thClass = "ABSthClassList";
           var isSorted = this.sortedField.map(x => x.field).indexOf(val);
@@ -1337,6 +1347,7 @@ export default {
   beforeCreate: function() {},
   created: function() {
     this.checkOrderBy()
+    this.cShowNumber = this.cShowNumber ? this.cShowNumber : false;
   },
   beforeMount: function() {},
   mounted: function() {

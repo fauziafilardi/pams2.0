@@ -11,6 +11,7 @@
       @filter="$parent.M_Advance_Filter"
       @headTable="$parent.M_Head_Table"
       @refreshColumn="$parent.refreshColumn"
+      :cShowNumber="true"
     />
 
     <div
@@ -3291,6 +3292,7 @@ export default {
         dataDelete.push({
           _Message_: "",
           RowNo: value.RowNo,
+          TableRowCd: value.TableRowCd,
           LastUpdateStamp: value.LastUpdateStamp
         });
       });
